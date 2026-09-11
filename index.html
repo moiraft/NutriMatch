@@ -1,0 +1,813 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>第一組 - NutriMatch</title><meta name="data-notion-page-icon" content="💊"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%92%8A%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="3cf32097-4e87-802a-af65-f4746a7f3d59" class="page sans" data-notion-page-icon="💊"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1662695088125-e4a7a1fa0325?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="💊"></span></div><h1 class="page-title" dir="auto">第一組 - NutriMatch</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><blockquote id="3d632097-4e87-808d-a7d4-c0240a679049" class="" dir="auto">📢 結合 LLM 與 RAG 的保健食品智慧推薦與問答系統</blockquote><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-icon="📋" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3cf32097-4e87-806b-98ee-fb3445713262" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="📋"></span></div><div style="width:100%"><h4 id="3cf32097-4e87-80c8-97ef-dca3a697453d" class="" dir="auto">專題方向 - <strong>保健食品 × AI 問答 × (個人化推薦) × RAG</strong></h4><div id="3d732097-4e87-8094-bced-d92f5be7121e" class="column-list" data-notion-column-list="" dir="auto"><div id="3d832097-4e87-80f1-b9db-d9f1150476ec" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3cf32097-4e87-807a-89b2-fba02395617f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">呈現平台：網頁<ul id="3d632097-4e87-8040-81bf-cf17af7cd75b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">前後端分離</li></ul></li></ul><ul id="3d032097-4e87-80dd-93ac-f650d59cec6d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">資料庫：<ul id="3d732097-4e87-8083-a87d-ea89749f6a72" class="bulleted-list" dir="auto"><li style="list-style-type:circle">MongoDB Atlas</li></ul><ul id="3d632097-4e87-80dc-97f4-eaf8da0a3138" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><mark class="highlight-default" data-notion-highlight="default">Chroma DB</mark></li></ul></li></ul><ul id="3d732097-4e87-803d-ada4-dbd37481ad90" class="bulleted-list" dir="auto"><li style="list-style-type:disc">資料來源：組員提供 + 爬蟲</li></ul></div><div id="3d732097-4e87-8031-a8d9-d801205a8326" style="width:50%" class="column" data-notion-column-ratio="0.5" dir="auto"><ul id="3d832097-4e87-80f8-9b56-c94377876f3d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">小組成員：<ul id="3d832097-4e87-8025-ae07-f4a7ce349cc1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">100602720 蔡昇融</li></ul><ul id="3d832097-4e87-8081-b944-c342a74c1cf4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">106288233 呂政璇</li></ul><ul id="3d832097-4e87-80e6-97fd-cc616258e64c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">106343266 陳鳳庭</li></ul><ul id="3d832097-4e87-8064-ab78-caa561fce664" class="bulleted-list" dir="auto"><li style="list-style-type:circle">106347960 林以恩</li></ul><ul id="3d832097-4e87-8070-83f6-f7a8d293a734" class="bulleted-list" dir="auto"><li style="list-style-type:circle">106351222 林弘曆</li></ul></li></ul></div></div></div></aside><figure id="3d432097-4e87-80db-9a4b-c597c700ad7b" class="link-to-page"><a href="https://app.notion.com/p/3d4320974e8780db9a4bc597c700ad7b?pvs=21" data-notion-page-id="3d432097-4e87-80db-9a4b-c597c700ad7b" data-notion-space-id="65432097-4e87-8144-99c1-0003667d0b17"><span class="icon" data-emoji="⏰"></span>時間規劃</a></figure><h2 id="3d732097-4e87-8057-8e95-eba742b0d1a0" class="block-color-yellow_background" data-notion-highlight="yellow_background" dir="auto">整體架構</h2><blockquote id="3cf32097-4e87-8070-a763-c33f40cb8fb9" class="" dir="auto">📢 AI：<strong>問答、推薦、生成</strong></blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3d732097-4e87-8075-a424-c6e4668f6d9a" class="code code-wrap" data-notion-code-syntax="markdown"><code class="language-markdown" style="white-space:pre-wrap;word-break:break-all">                       ┌── 首頁
+                       ├── 商品頁
+         ┌── 網頁平台  ─┼── 商品詳情
+         │             ├── 登入/註冊         
+         │             ├── 會員資訊
+         │             └── 購物車 (不用實作)
+         │
+         │          ┌── AI Chat
+         │          ├── 商品問答 -&gt; 針對「商品相關資訊」，提問帶有明確目標，被動回答
+         │          ├── 商品比較
+NutriMatch ── LLM ──┼── 篩選商品 -&gt; 類似「搜尋功能」，直接回傳符合的品項
+         │          ├── AI 追問 -&gt; 主動
+         │          ├── 需求分類 &amp; 商品推薦 -&gt; 主動分析，沒有明確商品
+         │          ├── 個人資訊問答 -&gt; 針對「會員」回答個人資訊相關的問題  e.g. 訂單進度、購買紀錄
+         │          └── AI 生成說明
+         │
+         │          
+         └── RAG ───┬── 商品、網頁資訊
+                    └── 保健食品專業知識</code></pre><h2 id="3d732097-4e87-804e-9093-e50a0953af10" class="block-color-yellow_background" data-notion-highlight="yellow_background" dir="auto">功能說明</h2><blockquote id="3d732097-4e87-80bb-bde1-c3b11b4c90f8" class="" dir="auto">📢 皆是以「對話框」的形式呈現 → 問答，仿真人客服，用「自然語言」和網頁對話</blockquote><aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3d732097-4e87-8085-8238-e63354e89b6d" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><p id="3d732097-4e87-8096-99fd-cfcd1c927bd2" class="" dir="auto">AI 回答 → 描述原因（推論過程）、注意事項、資訊來源</p></div></aside><div id="3d732097-4e87-80d4-b883-f03e71bdd744" class="column-list" data-notion-column-list="" dir="auto"><div id="3d732097-4e87-802f-9bf5-e6a7f5c47b08" style="width:75%" class="column" data-notion-column-ratio="0.75" dir="auto"><ul id="3d732097-4e87-80cd-bae5-f12c3ba46103" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>AI Chat</strong>：<ul id="3d732097-4e87-8017-9fb7-e1f74d689057" class="bulleted-list" dir="auto"><li style="list-style-type:circle">回答「衛教知識」相關問題<ul id="3d732097-4e87-8052-bfc3-dba53fee9194" class="bulleted-list" dir="auto"><li style="list-style-type:square">資料：<a href="https://sp1.hso.mohw.gov.tw/doctor/Index1.php">衛生福利部【台灣ｅ院】</a>→ 爬蟲</li></ul></li></ul><ul id="3d732097-4e87-800e-adb0-c8984d4d0b40" class="bulleted-list" dir="auto"><li style="list-style-type:circle">回答「網頁資訊」，所有和網頁、品牌、商品相關的問題<ul id="3d732097-4e87-809c-a95c-c61c903fc300" class="bulleted-list" dir="auto"><li style="list-style-type:square">資料：所有網頁資訊</li></ul></li></ul></li></ul><ul id="3d032097-4e87-806d-9590-e7a7d44e4daf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>商品問答 &amp; 商品比較</strong>：<ul id="3d732097-4e87-8050-b71c-ce3c82a6b2c1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">可以針對「所有商品」</li></ul><ul id="3d732097-4e87-80f1-93cd-ffb682fff0fa" class="bulleted-list" dir="auto"><li style="list-style-type:circle">也可以針對「當前網頁上的商品」<p id="3d732097-4e87-8056-9ae1-d2860ce391bf" class="" dir="auto">e.g. User：這兩個產品有什麼差異 → LLM 可以知道，是指當前頁面上的產品</p></li></ul><ul id="3d732097-4e87-8040-93c5-e4d2994ce32a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">資料：網頁商品</li></ul></li></ul><ul id="3d732097-4e87-80d4-b6ec-e52c86c8f3ab" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>篩選商品</strong>：<ul id="3d732097-4e87-80af-9f17-e5f014c95fea" class="bulleted-list" dir="auto"><li style="list-style-type:circle">根據使用者輸入，<strong>篩選</strong>出符合的品項，直接呈現在頁面上</li></ul><ul id="3d732097-4e87-807c-9dd1-d12284ab03ba" class="bulleted-list" dir="auto"><li style="list-style-type:circle">資料：網頁商品</li></ul></li></ul><ul id="3d732097-4e87-80da-829d-f6a45510ae37" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>AI 追問</strong>：<ul id="3d732097-4e87-808a-9283-dffd05c47aee" class="bulleted-list" dir="auto"><li style="list-style-type:circle">主動提出相關問題，深入了解潛在需求以提供精準服務</li></ul></li></ul><ul id="3d732097-4e87-807c-9181-e2d69c98fb44" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>AI 生成說明</strong>：<ul id="3d732097-4e87-80dd-a833-d1833254ca78" class="bulleted-list" dir="auto"><li style="list-style-type:circle">生成回覆，經過判斷後（Safety Rule），在呈現在頁面上</li></ul></li></ul></div><div id="3d732097-4e87-8096-b8e7-d8397a98a61a" style="width:25.000000000000007%" class="column" data-notion-column-ratio="0.25000000000000006" dir="auto"><figure id="3d732097-4e87-8043-8d8c-f5f1ec8dde66" class="image" data-notion-image="image.png" dir="ltr"><a href="image.png"><img style="width:249.99996948242188px" src="image.png"/></a></figure></div></div><hr id="3d732097-4e87-8013-9e54-fbf02f969e8a" dir="auto"/><ul id="3d732097-4e87-8092-be96-c05f1cf48a5d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>需求分類 &amp; 商品推薦</strong>：<blockquote id="3d732097-4e87-80a0-ba73-f42243f0b7ba" class="" dir="auto">📢  Rule-based + RAG + LLM</blockquote><ul id="3d732097-4e87-80a1-b535-d6c857d8ceed" class="bulleted-list" dir="auto"><li style="list-style-type:circle">設定規則，讓 LLM + RAG 回答</li></ul><ul id="3cf32097-4e87-80e9-91fc-f0884d9b0f7c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">需求描述：<ol type="1" id="3cf32097-4e87-80b4-b8e2-f31c81862e49" class="numbered-list" start="1" dir="auto"><li>使用者描述需求</li></ol><ol type="1" id="3cf32097-4e87-8086-bf9b-d2584411365b" class="numbered-list" start="2" dir="auto"><li><strong>LLM 追問與需求分類</strong></li></ol><ol type="1" id="3cf32097-4e87-8015-af6a-ece0392bba07" class="numbered-list" start="3" dir="auto"><li>檢索成分與產品知識庫</li></ol><ol type="1" id="3cf32097-4e87-8034-9556-ca5b4351200b" class="numbered-list" start="4" dir="auto"><li>安全規則檢查</li></ol><ol type="1" id="3cf32097-4e87-80aa-802d-c727b2c56dc9" class="numbered-list" start="5" dir="auto"><li>生成個人化說明</li></ol><ol type="1" id="3cf32097-4e87-8072-989b-d318332bdece" class="numbered-list" start="6" dir="auto"><li>推薦卡、注事項、來源</li></ol></li></ul><ul id="3d732097-4e87-802d-9a62-efb66dbcdaa2" class="bulleted-list" dir="auto"><li style="list-style-type:circle">資料：網頁商品</li></ul></li></ul><hr id="3d732097-4e87-8014-aaee-cbdacf0fb67d" dir="auto"/><ul id="3d732097-4e87-8001-b810-dfbd486aa57c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>個人資訊問答</strong>：<ul id="3d732097-4e87-80c1-9f3a-e887480e22eb" class="bulleted-list" dir="auto"><li style="list-style-type:circle">會員專區，登入後可以針對「個人資訊、過去交易紀錄、訂單狀況…」提出問題<ul id="3d732097-4e87-80d5-b41a-c29d9fb3c6ae" class="bulleted-list" dir="auto"><li style="list-style-type:square">若未登入 → 請他先去登入</li></ul></li></ul><ul id="3d732097-4e87-802f-82b1-f5611f82cb8f" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><mark class="highlight-default" data-notion-highlight="default">Text-to-MQL：透過 </mark>LLM 理解後，自動生成精確的 MongoDB 查詢語法<blockquote id="3d632097-4e87-80cb-bf05-fdb2d495c816" class="" dir="auto">📢 LLM →<mark class="highlight-default" data-notion-highlight="default"> NoSQL → Datab</mark>ase</blockquote><ul id="3d732097-4e87-80c1-8b43-c41631d73097" class="bulleted-list" dir="auto"><li style="list-style-type:square">注意<strong>隱私問題</strong>，要確保「只能看到登入者」自己的資料</li></ul></li></ul></li></ul><h2 id="3cf32097-4e87-8041-8268-e16d3cebe7db" class="block-color-yellow_background" data-notion-highlight="yellow_background" dir="auto">網頁平台（未確定）</h2><blockquote id="3cf32097-4e87-80d8-877d-ec09645dd0e7" class="" dir="auto">📢<strong> </strong>基本資訊 &amp; 功能擺放位置</blockquote><ul id="3d732097-4e87-8082-8401-e2b0ad11389e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>首頁</strong><ul id="3d732097-4e87-80b9-ad12-cf31da4571b3" class="bulleted-list" dir="auto"><li style="list-style-type:circle">M：網頁資訊</li></ul><ul id="3d732097-4e87-80b1-88e7-ede6c46eced4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">V：品牌介紹、功能介紹 …</li></ul><ul id="3d732097-4e87-8058-8540-d0edded47125" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C：<span style="border-bottom:0.05em solid">對話框</span>、商品頁連結</li></ul></li></ul><ul id="3d732097-4e87-804b-a714-cdc9c078b100" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>商品頁</strong><ul id="3d732097-4e87-8044-b8a3-da12463263eb" class="bulleted-list" dir="auto"><li style="list-style-type:circle">M：所有商品資料</li></ul><ul id="3d732097-4e87-802f-98b6-e946abcd3aa0" class="bulleted-list" dir="auto"><li style="list-style-type:circle">V：商品卡片、類別、搜尋框…</li></ul><ul id="3d732097-4e87-8062-802a-d9ab61dbd44e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C：<span style="border-bottom:0.05em solid">對話框</span>、商品頁連結</li></ul></li></ul><ul id="3d732097-4e87-807f-ad87-c7832582a989" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>商品詳情</strong><ul id="3d732097-4e87-805a-8ac7-d1d26f1683f6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">M：特定商品資料</li></ul><ul id="3d732097-4e87-80b2-aac3-e91a249d7960" class="bulleted-list" dir="auto"><li style="list-style-type:circle">V：商品名稱、品牌、成份、注意事項…</li></ul><ul id="3d732097-4e87-80df-8b3f-ecd0da564595" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C：<span style="border-bottom:0.05em solid">對話框</span>、商品頁連結</li></ul></li></ul><hr id="3d732097-4e87-80ba-b30a-f0646243546f" dir="auto"/><ul id="3d732097-4e87-80fb-b4f0-d51f41847043" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>登入 &amp; 註冊</strong><ul id="3d732097-4e87-80dc-b46d-d48714b222b7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">M：會員資料</li></ul><ul id="3d732097-4e87-8093-a967-d775804b2e3e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">V：資料的輸入框、註冊/登入畫面連結…</li></ul><ul id="3d732097-4e87-80bf-9eae-c8c893990c7e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C：寫入 or 讀取資料庫</li></ul></li></ul><ul id="3d732097-4e87-809c-ba97-d5bdbf300c43" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>會員資訊</strong><ul id="3d732097-4e87-8093-a2a6-d264279c24af" class="bulleted-list" dir="auto"><li style="list-style-type:circle">M：「該會員」相關的資料</li></ul><ul id="3d732097-4e87-8027-9c6a-f9296b8c4e33" class="bulleted-list" dir="auto"><li style="list-style-type:circle">V：個人資料、購買紀錄 …</li></ul><ul id="3d732097-4e87-80eb-8f6c-eead23dc8c6f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C：對話框</li></ul></li></ul><ul id="3d732097-4e87-80bf-9711-d0822cfc92f8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>購物車</strong> → 不用實作，只是表示會有「交易紀錄」產生</li></ul><h2 id="3d632097-4e87-80e6-b538-c50e76deafc9" class="block-color-yellow_background" data-notion-highlight="yellow_background" dir="auto">進度安排</h2><blockquote id="3d632097-4e87-80fa-8d4b-fa1d59023fdd" class="" dir="auto">分階段完成，看「實際進度」決定<aside class="block-color-gray_background callout" data-notion-callout="" data-notion-callout-icon="💡" data-notion-callout-background="gray_background" style="white-space:pre-wrap;display:flex" id="3d632097-4e87-809a-9c2c-fba08861ed81" dir="ltr"><div style="font-size:1.5em"><span class="icon" data-emoji="💡"></span></div><div style="width:100%"><ul id="3d632097-4e87-80ea-89ed-f39dcae915b8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">截止日：10/21</li></ul><ul id="3d632097-4e87-808e-a996-d8bd48f1cf12" class="bulleted-list" dir="auto"><li style="list-style-type:disc">發表日：10/23</li></ul></div></aside></blockquote><p id="3d632097-4e87-805e-aa6c-e7e45c05a00c" class="" dir="auto">1️⃣ Level 1 - 基本：保健食品 x LLM x RAG<div class="indented"><div id="3d732097-4e87-8039-95ca-d2a1594526ac" class="column-list" data-notion-column-list="" dir="auto"><div id="3d732097-4e87-80b1-8654-e072f2da0ec6" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><ul id="3d732097-4e87-80e8-a460-de73914c175d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">功能：<ul id="3d732097-4e87-8028-976d-c8aaf3f8ec27" class="bulleted-list" dir="auto"><li style="list-style-type:circle">AI Chat</li></ul><ul id="3d732097-4e87-806a-82ec-db8fbde9532b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">商品問答 &amp; 商品比較</li></ul><ul id="3d732097-4e87-805e-ae9d-d3a40f2c59cc" class="bulleted-list" dir="auto"><li style="list-style-type:circle">篩選商品</li></ul><ul id="3d732097-4e87-80d2-a0d1-f4d0d5275af3" class="bulleted-list" dir="auto"><li style="list-style-type:circle">AI 追問</li></ul><ul id="3d732097-4e87-80ee-b996-f1bacfc2740a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">AI 生成說明</li></ul></li></ul></div><div id="3d732097-4e87-8078-84a8-c1b3c55a15ea" style="width:100%" class="column" data-notion-column-ratio="1" dir="auto"><ul id="3d732097-4e87-80e2-aa4c-ceaae1b415c4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">頁面：<ul id="3d732097-4e87-8017-aa94-d734e3bd238f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">首頁</li></ul><ul id="3d732097-4e87-802c-aef7-fcc12c14cc33" class="bulleted-list" dir="auto"><li style="list-style-type:circle">商品頁</li></ul><ul id="3d732097-4e87-800d-8c85-df69c3ec8dd3" class="bulleted-list" dir="auto"><li style="list-style-type:circle">商品詳情</li></ul></li></ul></div></div></div></p><p id="3d632097-4e87-8004-9631-d508dd5fe6cd" class="" dir="auto">2️⃣ Level 2 - 加入「推薦系統」<div class="indented"><ul id="3d732097-4e87-8055-bcda-d8834cc75cf4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">增加功能：需求分類 &amp; 商品推薦</li></ul></div></p><p id="3d632097-4e87-80c6-b1e5-c288b778b2ee" class="" dir="auto">3️⃣ Level 3 - 加入「會員專用小助手」<div class="indented"><ul id="3d732097-4e87-8083-8fe6-fb814630c5e1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">增加<ul id="3d732097-4e87-80bb-b14e-f54c5b4d44d9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">功能：個人資訊問答</li></ul><ul id="3d732097-4e87-8074-8db3-d94366a9dc9c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">頁面：登入 &amp; 註冊、會員資訊、購物車</li></ul></li></ul></div></p><div id="3d032097-4e87-80a3-9a4d-f67419c06ccd" class="column-list" data-notion-column-list="" dir="auto"><div id="3d032097-4e87-80f9-8797-c5d10d1a303e" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3d032097-4e87-803c-8c07-cf9d77579ff8" dir="ltr"><div style="width:100%"><h4 id="3d032097-4e87-80d3-a344-eca91bf07208" class="" dir="auto"><mark class="highlight-yellow" data-notion-highlight="yellow">MongoDB Atlas</mark></h4><hr id="3d032097-4e87-80ce-b9ec-c930a2267595" dir="auto"/><ul id="3d032097-4e87-80ad-9f17-d45fc985cd45" class="bulleted-list" dir="auto"><li style="list-style-type:disc">頁面商品 - 50</li></ul><ul id="3d732097-4e87-8029-b092-d6d3abf9a94d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">會員資料</li></ul><ul id="3d732097-4e87-80ac-bdf8-e9f7cb8c1f6e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">訂單記錄</li></ul></div></aside></div><div id="3d032097-4e87-8050-b8e3-d1061b30cffb" style="width:33.333333333333336%" class="column" data-notion-column-ratio="0.33333333333333337" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3d632097-4e87-809e-8d51-e1f3f8e0f3e0" dir="ltr"><div style="width:100%"><h4 id="3d632097-4e87-80a7-8375-eb7c830618cd" class="" dir="auto"><mark class="highlight-yellow" data-notion-highlight="yellow">Chroma DB</mark></h4><hr id="3d632097-4e87-803f-aebe-c3008c9c8210" dir="auto"/><ul id="3d632097-4e87-8058-8ce5-f036a401bb4e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">專業資訊</li></ul><ul id="3d832097-4e87-8093-8cb1-f4c834f9f0ba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">向量化的官網資訊、商品</li></ul></div></aside></div><div id="3d732097-4e87-8060-9b37-c4ff8da6a676" style="width:33.33333333333333%" class="column" data-notion-column-ratio="0.3333333333333333" dir="auto"><aside class="block-color-default_background callout" data-notion-callout="" data-notion-callout-background="default_background" style="white-space:pre-wrap;display:flex" id="3d032097-4e87-80f8-9b2a-f6c1db2d6a3d" dir="ltr"><div style="width:100%"><h4 id="3d032097-4e87-806a-9ea4-f39cd3a67a6f" class="" dir="auto"><mark class="highlight-yellow" data-notion-highlight="yellow">資料來源</mark></h4><hr id="3d032097-4e87-8017-8f21-d4f07b9d2788" dir="auto"/><ul id="3d732097-4e87-8044-8953-e4ff98d12bf3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">商品<ul id="3d032097-4e87-808e-a32d-efa6d86435ab" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><a href="https://drive.google.com/file/d/1x65V0BSZ2owqWuUFaipTtyJIaq_vEzQW/view?usp=drive_link">仲安家</a> → 22</li></ul><ul id="3d732097-4e87-80bd-b3d5-ee4178d9a065" class="bulleted-list" dir="auto"><li style="list-style-type:circle">爬蟲 → 湊 50 項商品</li></ul></li></ul><ul id="3d032097-4e87-808b-b7b2-cff6dcad1a66" class="bulleted-list" dir="auto"><li style="list-style-type:disc">專業知識：<br/><a href="https://sp1.hso.mohw.gov.tw/doctor/Index1.php">衛生福利部【台灣ｅ院】</a></li></ul></div></aside></div></div><p id="3d632097-4e87-803a-a0e5-fe19b39330af" class="" dir="auto">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
